@@ -8,13 +8,10 @@ fi
 
 source ~/.config/zsh/plugins/zsh_unplugged/zsh_unplugged.zsh
 
-plugins=(
-	zdharma-continuum/fast-syntax-highlighting
-	zsh-users/zsh-autosuggestions
-	jackharrisonsherlock/common
-)
+plugins=(zdharma-continuum/fast-syntax-highlighting zsh-users/zsh-autosuggestions)
 
 plugin-load $plugins
+eval "$(starship init zsh)"
 
 # Completions
 
@@ -36,10 +33,10 @@ setopt COMPLETE_IN_WORD
 unsetopt BEEP
 
 bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'l' vi-forwar-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey '^I'   complete-word
+bindkey '^I' complete-word
 bindkey '^[[Z' autosuggest-accept
 
 bindkey -v
