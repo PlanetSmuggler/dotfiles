@@ -1,0 +1,14 @@
+# starship config by PlanetSmuggler
+
+add_newline = false
+
+format = """
+$directory
+"""
+
+right_format = """
+$all
+"""
+
+[character]
+disabled = true
