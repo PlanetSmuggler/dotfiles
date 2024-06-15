@@ -23,7 +23,6 @@ opt.conceallevel = 0
 opt.signcolumn = "number"
 opt.showtabline = 2
 opt.number = true
-opt.relativenumber = true
 opt.numberwidth = 4
 opt.ignorecase = true
 opt.smartcase = true
@@ -114,24 +113,53 @@ require("lazy").setup({
   end
  },
 
- -- lsp
+ -- LSP
+ 
+ {
+   "willamboman/mason.nvim",
+   config = function() require("mason").setup({})end
+ },
+
+ {
+   "williamboman/mason-lspconfig.nvim",
+   config = function()
+     require("mason-lspconfig").setup({
+       ensure_installed = {
+         "bashls",
+         "clangd",
+         "cssls",
+         "gopls",
+         "html",
+         "jsonls",
+         "jdtls",
+         "tsserver",
+         "lua_ls",
+         "pyright",
+         "sqlls",
+         "taplo",
+         "yamlls",
+       },
+       automatic_installation = true
+     })
+   end
+ },
+
  {
     "neovim/nvim-lspconfig",
-    dependencies = {
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim"
-    },
     config = function()
-      local mason = require("mason")
-      local mason_lspconfig = require("mason-lspconfig")
       local lspconfig = require("lspconfig")
+      local mason_lspconfig = require("mason-lspconfig")
 
-      mason.setup({})
-      mason_lspconfig.setup({
-        ensure_installed = {"lua_ls","pyright"},
-        automatic_installation = true
+      local on_attach = function(client,bufnr)
+        local mapping = vim.keymap.set
+        local options = {noremap = true,silent = true, buffer = bufnr}
+
+        mapping("n","K",vim.lsp.buf.hover,options)
+      end
+
+      mason_lspconfig.setup_handlers({
+        function(server_name) lspconfig[server_name].setup({on_attach=on_attach}) end,
       })
-      lspconfig.lua_ls.setup({})
     end
  },
 

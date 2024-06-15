@@ -54,3 +54,5 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey '^I' complete-word
 bindkey '^[[Z' autosuggest-accept
+
+source /usr/share/nvm/init-nvm.sh
