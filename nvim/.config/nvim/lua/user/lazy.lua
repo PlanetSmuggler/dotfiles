@@ -1,5 +1,4 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system({
     "git",
@@ -10,32 +9,19 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     lazypath,
   })
 end
-
 vim.opt.rtp:prepend(lazypath)
 
-local opts = {
-  change_detection = {
-    enabled = true,
-    notify = true
+require('lazy').setup(require("user.plugins"),{
+  change_detection = {enabled = true,notify = true},
+  checker = {enabled = true, notify = false},
+  install = {missing = true,colorscheme = {"tokyonight"}},
+  -- defaults = {lazy = true, version = nil}
+  performance = {
+    rtp = {
+      disabled_plugins = {"gzip","matchit","matchparen","netrwPlugin","tarPlugin","tohtml","zipPlugin"}
+    }
   }
-}
-
-local plugins = {
-  require("user.plugins.colorscheme"),
-  require("user.plugins.nvim-tree"),
-  require("user.plugins.lualine"),
-  require("user.plugins.tabline"),
-  require("user.plugins.cmd"),
---require("user.plugins.breadcrumps"),
-  require("user.plugins.autopairs"),
-  require("user.plugins.gitsigns"),
-  require("user.plugins.treesitter"),
-  require("user.plugins.indent"),
-  require("user.plugins.completions"),
-  require("user.plugins.lsp")
-}
-
-require('lazy').setup(plugins,opts)
+})
 
 
 

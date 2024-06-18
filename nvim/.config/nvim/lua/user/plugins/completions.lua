@@ -1,4 +1,4 @@
-local P = {
+return {
   "hrsh7th/nvim-cmp",
   event = {"InsertEnter"},
   dependencies = {
@@ -15,13 +15,9 @@ local P = {
     },
     {"saadparwaiz1/cmp_luasnip",event="InsertEnter"},
     {"onsails/lspkind.nvim",event="InsertEnter"},
-  }
-}
-
-P.config = function()
-  local cmp = require("cmp")
-  local luasnip = require("luasnip")
-  --local lspkind = require("lspkind")
+  },
+  config = function()
+  local cmp = require("cmp") 
   require("luasnip.loaders.from_vscode").lazy_load()
 
   cmp.setup({
@@ -37,7 +33,7 @@ P.config = function()
       ['<C-j>'] = cmp.mapping.select_next_item(),
       ['<C-k>'] = cmp.mapping.select_prev_item(),
       ['<C-Space>'] = cmp.mapping.complete({}),
-      ['<C-e'] = cmp.mapping.close(),
+      ['<C-e>'] = cmp.mapping.close(),
       -- TODO mappings
     }),
     completion = {
@@ -53,4 +49,4 @@ P.config = function()
     })
     end
 
-return P
+}

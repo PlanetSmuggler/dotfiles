@@ -18,11 +18,13 @@ end
 local N = {
   "akinsho/bufferline.nvim",
   version = "*",
-  dependencies = {"nvim-tree/nvim-web-devicons"}
+  event = "VeryLazy",
+  dependencies = {"nvim-tree/nvim-web-devicons"},
+  keys = {}
 }
 
 N.config = function()
   require("bufferline").setup({})
 end
 
-return P
+return N

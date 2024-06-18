@@ -23,7 +23,10 @@ P.config = function()
   
   require("mason").setup({})
   mason_lspconfig.setup({
-    ensure_installed = {"bashls","clangd","cssls","gopls","html","jsonls","jdtls","tsserver","lua_ls","pyright","sqlls","taplo","yamlls"},
+    ensure_installed = {
+      --"bashls","clangd","cssls","gopls","html","jsonls","jdtls","tsserver",
+      "lua_ls",--"pyright","sqlls","taplo","yamlls"
+    },
     automatic_installation = true
   })
 

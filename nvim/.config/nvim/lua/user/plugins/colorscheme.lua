@@ -1,13 +1,24 @@
-local P = {
-  "folke/tokyonight.nvim",
-  lazy = false,
-  priority = 1000
+return {
+  tokyonight = {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function() vim.cmd[[colorscheme tokyonight]] end
+  },
+
+  catppuccin = {
+    "catppuccin/nvim",
+    lazy = false,
+    priority = 1000,
+    config = function() vim.cmd[[colorscheme catppuccin]] end
+  },
+
+  oxocarbon = {
+    "nyoom-engineering/oxocarbon.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function() vim.cmd[[colorscheme oxocarbon]] end
+  }
 }
 
-P.config = function()
-  vim.cmd[[colorscheme tokyonight]]
-end
-
-return P
-
-
+-- TODO build a theme switcher or switch to themery
