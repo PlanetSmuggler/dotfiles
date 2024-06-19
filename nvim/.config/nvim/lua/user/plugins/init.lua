@@ -1,9 +1,9 @@
 return {
   "nvim-lua/plenary.nvim",
   "MunifTanjim/nui.nvim",
-  { 
+  {
     "nvim-tree/nvim-web-devicons",
-    config = {default = true} 
+    config = {default = true}
   },
   {
     "nacro90/numb.nvim",
@@ -16,16 +16,6 @@ return {
     config = function() require("indentmini").setup({}) end,
     event = "BufReadPre"
     -- TODO change this
-  },
-  {
-    "LunarVim/breadcrumbs.nvim",
-    dependencies = "SmiteshP/nvim-navic",
-    config = function ()
-      require("nvim-navic").setup({
-        lsp = {auto_attach = true}
-      })
-      require("breadcrumbs").setup()
-    end
   },
   {
     "stevearc/dressing.nvim",
@@ -54,17 +44,33 @@ return {
       require("lualine").setup({})
     end
   },
-  
+  {
+    "LunarVim/breadcrumbs.nvim",
+    dependencies = "SmiteshP/nvim-navic",
+    config = function ()
+      require("nvim-navic").setup({
+        lsp = {
+          auto_attach = true
+        }
+      })
+
+      require("breadcrumbs").setup({})
+    end
+  },
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    dependencies = "rcarriga/nvim-notify",
+    config = function ()
+     require("noice").setup({}) 
+    end
+  },
   require("user.plugins.mini"),
   require("user.plugins.telescope"),
   require("user.plugins.treesitter"),
   require("user.plugins.colorscheme")["tokyonight"],
   require("user.plugins.nvim-tree"),
-  require("user.plugins.tabline"),
-
-  --require("user.plugins.indent"),
   require("user.plugins.completions"),
   require("user.plugins.lsp"),
-  require("user.plugins.toggleterm")
-  -- TODO diff view & neogit, which key
+  require("user.plugins.which")
 }

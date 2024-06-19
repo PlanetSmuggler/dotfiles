@@ -16,37 +16,54 @@ return {
     {"saadparwaiz1/cmp_luasnip",event="InsertEnter"},
     {"onsails/lspkind.nvim",event="InsertEnter"},
   },
+
   config = function()
-  local cmp = require("cmp") 
-  require("luasnip.loaders.from_vscode").lazy_load()
+    local cmp = require("cmp")
+    local luasnip = require("luasnip")
+    luasnip.loaders.from_vscode.lazy_load()
 
-  cmp.setup({
-    snippet = {
-      expand = function(args) require("luasnip").lsp_expand(args.body) end
-    },
-    window = {
-      completion = cmp.config.window.bordered(),
-      documentation = cmp.config.window.bordered()
-    },
-    mapping = cmp.mapping.preset.insert({
-      ['<CR>'] = cmp.mapping.confirm({select=true}),
-      ['<C-j>'] = cmp.mapping.select_next_item(),
-      ['<C-k>'] = cmp.mapping.select_prev_item(),
-      ['<C-Space>'] = cmp.mapping.complete({}),
-      ['<C-e>'] = cmp.mapping.close(),
-      -- TODO mappings
-    }),
-    completion = {
-      completeopt = "menu,menuone,preview,noselect"
-    },
-    sources = cmp.config.sources({
-      { name = "nvim_lsp"},
-      { name = "buffer" },
-      { name = "luasnip" },
-      { name = "path" },
-      { name = "emoji"}
+    cmp.setup({
+      snippet = {
+        expand = function(args) require("luasnip").lsp_expand(args.body) end
+      },
+      window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered()
+      },
+      mapping = cmp.mapping.preset.insert({
+        ['<CR>'] = cmp.mapping.confirm({select=true}),
+        ['<C-j>'] = cmp.mapping.select_next_item(),
+        ['<C-k>'] = cmp.mapping.select_prev_item(),
+        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete({
+          behavior = cmp.ConfirmBehavior.Replace,
+          select = true
+        }),
+        ['<C-e>'] = cmp.mapping.close(),
+        ['<C-l>'] = cmp.mapping(function()
+            if luasnip.expand_or_locally_jumpable() then
+              luasnip.expand_or_jump()
+            end
+          end, 
+          { 'i', 's' }
+        ),
+        ['<C-h>'] = cmp.mapping(function()
+            if luasnip.locally_jumpable(-1) then
+              luasnip.jump(-1)
+            end
+          end, { 'i', 's' }),
       }),
-    })
-    end
-
+      completion = {
+        completeopt = "menu,menuone,noinsert"
+      },
+      sources = cmp.config.sources({
+        { name = "nvim_lsp"},
+        { name = "luasnip" },
+        { name = "buffer" },
+        { name = "path" },
+        { name = "emoji"}
+        }),
+      })
+  end,
 }

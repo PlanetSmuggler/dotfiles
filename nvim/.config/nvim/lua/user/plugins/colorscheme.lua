@@ -20,5 +20,3 @@ return {
     config = function() vim.cmd[[colorscheme oxocarbon]] end
   }
 }
-
--- TODO build a theme switcher or switch to themery

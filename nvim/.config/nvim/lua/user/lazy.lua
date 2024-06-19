@@ -23,6 +23,3 @@ require('lazy').setup(require("user.plugins"),{
   }
 })
 
-
-
-

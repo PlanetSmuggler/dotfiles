@@ -19,10 +19,10 @@ opt.wrap = true
 opt.laststatus = 3
 opt.pumheight = 10
 opt.pumblend = 10
-opt.cmdheight = 1
+opt.cmdheight = 0
 opt.conceallevel = 0
-opt.signcolumn = "yes"
-opt.showtabline = 2
+opt.signcolumn = "number"
+opt.showtabline = 0
 opt.number = true
 opt.numberwidth = 4
 opt.cursorline = true
@@ -45,22 +45,4 @@ opt.smarttab = true
 opt.tabstop = 2
 opt.softtabstop = 2
 opt.shiftwidth = 2
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
