@@ -5,7 +5,7 @@ opt.undofile = true
 opt.swapfile = false
 
 opt.clipboard = "unnamedplus"
-opt.completeopt = {"menuone","noinsert"}
+opt.completeopt = { "menuone", "noinsert" }
 opt.mouse = "a"
 opt.hlsearch = true
 opt.showmode = false
@@ -45,4 +45,3 @@ opt.smarttab = true
 opt.tabstop = 2
 opt.softtabstop = 2
 opt.shiftwidth = 2
-
